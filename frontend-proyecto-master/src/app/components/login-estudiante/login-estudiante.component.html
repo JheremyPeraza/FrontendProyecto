@@ -1,0 +1,37 @@
+<div class="login-container">
+  <div class="login-card">
+    <img src="https://gunig2.uniguajira.edu.co/ords/r/gunig_2/files/static/v673/logo_uniguajira.png" alt="Logo" class="logo">
+
+    <h2>Iniciar Sesión</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="form-group">
+        <label for="email">Correo</label>
+        <input type="email" id="email" formControlName="email" placeholder="Ingresa tu correo" required pInputText />
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          <small class="error">El correo es requerido</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" formControlName="password" placeholder="Ingresa tu contraseña" required pInputText />
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          <small class="error">La contraseña es requerida</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="captcha">{{ captchaQuestion }}</label>
+        <input type="number" id="captcha" formControlName="captchaAnswer" placeholder="Ingresa el resultado" required pInputText />
+        <div *ngIf="loginForm.get('captchaAnswer')?.invalid && loginForm.get('captchaAnswer')?.touched">
+          <small class="error">El resultado del captcha es requerido</small>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">Ingresar</button>
+    </form>
+  </div>
+
+  <p-toast></p-toast> <!-- Mensajes de PrimeNG -->
+</div>
